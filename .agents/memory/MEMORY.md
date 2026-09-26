@@ -1,0 +1,1 @@
+- [Supabase browser credentials](supabase-browser-credentials.md) — Replit's Supabase connector is server-side; direct browser clients need a project anon/publishable key exposed as a Vite secret.
