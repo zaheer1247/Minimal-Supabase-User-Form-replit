@@ -1,0 +1,130 @@
+Create a new minimal website using my EXISTING Supabase project that is already connected to Lovable through the Supabase connector.
+
+Do NOT create a new Supabase project or database.
+
+## Goal
+
+Create a simple website where:
+
+1. User enters a username.
+2. User clicks `Submit`.
+3. The username is inserted into my existing Supabase `users` table.
+4. The website displays whether the operation succeeded or failed.
+
+## First: Inspect Supabase
+
+Before building the database integration, use the connected Supabase project and inspect the existing database.
+
+Verify:
+
+- The `public.users` table exists.
+- The actual columns in the table.
+- The datatype of the `username` column.
+- Whether other columns have defaults or are required.
+- Whether Row Level Security (RLS) is enabled.
+- Whether the current policies allow this application to INSERT into `public.users`.
+
+Do NOT guess the database schema.
+
+Do NOT create or modify tables, columns, RLS policies, or other database objects without asking me first.
+
+## Build the Website
+
+Create a single clean page containing:
+
+**Create User**
+
+Username:
+[ Enter username ]
+
+[ Submit ]
+
+Keep the design clean, modern, centered, and responsive.
+
+Do not add unnecessary pages or features.
+
+## Connect the Form to Supabase
+
+Use the existing Supabase connection already configured in Lovable.
+
+Use the official Supabase client.
+
+When Submit is clicked:
+
+1. Trim the username.
+2. Validate that it is not empty.
+3. Disable the Submit button while processing.
+4. Insert the username into the existing `public.users` table.
+
+The operation should be equivalent to:
+
+```typescript id="uwi0hb"
+const { error } = await supabase
+  .from("users")
+  .insert({
+    username: username.trim()
+  });
+```
+
+Do not manually provide values for database-generated columns such as `id` or `created_at` if the existing schema generates them automatically.
+
+## Success
+
+If the INSERT succeeds:
+
+Display:
+
+`User created successfully`
+
+Clear the username input.
+
+## Failure
+
+If the INSERT fails:
+
+Display:
+
+`Failed to create user`
+
+Log and show me the actual Supabase error for debugging.
+
+Do NOT hide the real database error.
+
+Do NOT disable RLS or weaken database security automatically to make the application work.
+
+## Keep Architecture Minimal
+
+The architecture should simply be:
+
+Lovable frontend
+→ Existing Lovable Supabase connection
+→ Existing Supabase project
+→ public.users
+
+Do NOT create:
+
+- Another Supabase project
+- Another database
+- Another users table
+- Separate backend/API server
+- Express
+- Edge Functions
+- Authentication
+- Login/signup
+- ORM
+- Additional tables
+
+## Verify Everything
+
+After implementation:
+
+1. Make sure the application builds successfully.
+2. Confirm which existing Supabase project is being used.
+3. Confirm the actual `public.users` schema you discovered.
+4. Test the form with the username `testuser`.
+5. Perform the actual INSERT.
+6. Verify that the new row exists in `public.users`.
+7. Report the inserted row's `id`, `username`, and `created_at` if those columns exist and are readable.
+8. If anything fails, give me the exact Supabase error and explain what needs to be fixed.
+
+Do not claim the integration works unless the INSERT has actually succeeded against my connected Supabase database.

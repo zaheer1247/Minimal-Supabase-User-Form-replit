@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Supabase User Form"
+description = "A focused one-page form that lets users enter a username and create a row in the existing Supabase public.users table, with clear success and error feedback."
+version = "1.0.0"
+id = "artifacts/supabase-user-form"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24883
+
+[services.development]
+run = "pnpm --filter @workspace/supabase-user-form run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/supabase-user-form", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/supabase-user-form/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24883"
+BASE_PATH = "/"
