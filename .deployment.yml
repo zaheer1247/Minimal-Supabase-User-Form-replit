@@ -1,0 +1,81 @@
+---
+# Deployment Configuration
+# Any changes to this file will trigger a redeployment on Vercel
+
+deployment:
+  name: "portfolio-app"
+  version: "1.0.0"
+
+  # Platform configuration
+  platform: "vercel"
+  region: "iad1"
+
+  # Build configuration
+  build:
+    command: "npm run build"
+    output_directory: "dist/public"
+    install_command: "npm install"
+
+    # Node version for build environment
+    node_version: "24.x"
+
+    # Environment variables for build
+    env:
+      NODE_ENV: "production"
+
+  # Runtime configuration
+  runtime:
+    node_version: "24.x"
+
+    # Server configuration
+    server:
+      port: 5000
+      entry_point: "server.mjs"
+
+      # API routes
+      routes:
+        - path: "/api/*"
+          handler: "server.mjs"
+        - path: "*"
+          handler: "dist/public/index.html"
+
+  # Deployment options
+  options:
+    # Enable source maps for debugging
+    source_maps: true
+
+    # Framework detection
+    framework: "vite"
+
+    # Automatic deploy on push
+    auto_deploy: true
+
+    # Branches to deploy
+    deploy_on_branches:
+      - main
+      - feature/zaheer_portfolio_replit_ui
+
+  # Environment variables (Vercel will use .env and .env.production)
+  environment_files:
+    - ".env"
+    - ".env.production"
+
+  # Post-deployment hooks
+  post_deploy:
+    # Health check endpoint
+    health_check:
+      url: "/api/health"
+      interval: 60
+      timeout: 10
+
+  # Performance monitoring
+  monitoring:
+    enabled: true
+    metrics:
+      - response_time
+      - error_rate
+      - build_time
+
+# Changes to this file automatically trigger redeployment
+# Update the version number above to force a new deployment
+# Last updated: 2026-09-30
