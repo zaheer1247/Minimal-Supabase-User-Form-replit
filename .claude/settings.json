@@ -1,5 +1,5 @@
 {
-  "description": "Replit Supabase monorepo with Express API, PostgreSQL, and React frontend",
+  "description": "Supabase monorepo with Express API, PostgreSQL, and React frontend",
   "bash": {
     "allowlist": [
       "pnpm",
