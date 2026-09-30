@@ -1,0 +1,13 @@
+{
+  "id": "run-dev-server-minimal-portfolio",
+  "name": "Run dev server for minimal portfolio",
+  "description": "Start the development server for the mockup-sandbox to preview the minimal portfolio components. Run: pnpm --filter @workspace/mockup-sandbox run dev, then open http://localhost:5173/preview/portfolio-complete-minimal",
+  "activeForm": "Starting dev server",
+  "status": "pending",
+  "metadata": {
+    "command": "pnpm --filter @workspace/mockup-sandbox run dev",
+    "url": "http://localhost:5173/preview/portfolio-complete-minimal",
+    "type": "portfolio-preview"
+  },
+  "createdAt": "2026-09-30T00:00:00Z"
+}

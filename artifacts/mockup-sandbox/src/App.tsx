@@ -98,20 +98,56 @@ function getPreviewExamplePath(): string {
 
 function Gallery() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-      <div className="text-center max-w-md">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-3">
-          Component Preview Server
-        </h1>
-        <p className="text-gray-500 mb-4">
-          This server renders individual components for the workspace canvas.
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      {/* Navigation */}
+      <nav className="border-b border-slate-700 bg-slate-900/50 backdrop-blur">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-xl font-bold">Portfolio</h1>
+          <div className="flex gap-6 text-sm">
+            <a href="#" className="hover:text-slate-300 transition">Home</a>
+            <a href="#" className="hover:text-slate-300 transition">Projects</a>
+            <a href="#" className="hover:text-slate-300 transition">About</a>
+            <a href="#" className="hover:text-slate-300 transition">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="max-w-6xl mx-auto px-6 py-20 text-center">
+        <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          Welcome to Your Portfolio
+        </h2>
+        <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+          A modern, fast, and fully functional full-stack application. Built with React, Express, and Tailwind CSS.
         </p>
-        <p className="text-sm text-gray-400">
-          Access component previews at{" "}
-          <code className="bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">
-            {getPreviewExamplePath()}
-          </code>
-        </p>
+
+        <div className="grid md:grid-cols-3 gap-6 mt-12">
+          <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 hover:border-blue-500 transition">
+            <h3 className="text-lg font-semibold mb-2">🚀 Fast</h3>
+            <p className="text-slate-400">Optimized performance with Vite and Express</p>
+          </div>
+          <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 hover:border-blue-500 transition">
+            <h3 className="text-lg font-semibold mb-2">💻 Modern</h3>
+            <p className="text-slate-400">Built with latest React, TypeScript, and Tailwind</p>
+          </div>
+          <div className="bg-slate-800 rounded-lg p-6 border border-slate-700 hover:border-blue-500 transition">
+            <h3 className="text-lg font-semibold mb-2">🔧 Flexible</h3>
+            <p className="text-slate-400">Easy to customize and extend</p>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-8 border-t border-slate-700">
+          <p className="text-slate-400 text-sm mb-4">📦 API Status</p>
+          <div className="flex justify-center gap-4">
+            <a href="http://localhost:5000/api/healthz" className="text-blue-400 hover:text-blue-300">
+              API Health Check
+            </a>
+            <span className="text-slate-600">•</span>
+            <a href="/preview/ComponentName" className="text-blue-400 hover:text-blue-300">
+              Component Preview
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,161 +1,125 @@
 # Claude Code Setup Guide
 
-This is a TypeScript monorepo using pnpm workspaces for a full-stack web application with Express API, PostgreSQL database, and React frontend.
+A simplified full-stack application with Express API backend and React frontend. Everything runs with a single command.
 
 ## Quick Start
 
 ```bash
-# Install dependencies
-pnpm install
+# Install dependencies (npm, not pnpm)
+npm install
 
-# Run the API server (localhost:5000)
-pnpm --filter @workspace/api-server run dev
-
-# Typecheck entire workspace
-pnpm run typecheck
-
-# Build all packages
-pnpm run build
-
-# Push DB schema changes (development only)
-pnpm --filter @workspace/db run push
-
-# Regenerate API hooks and Zod schemas from OpenAPI spec
-pnpm --filter @workspace/api-spec run codegen
+# Run everything in one command
+npm run dev
 ```
+
+That's it! 🎉 This starts:
+- **API Server**: http://localhost:5000
+- **Frontend Dev Server**: http://localhost:5173
 
 ## Project Structure
 
-### Monorepo Packages
-
-- **`artifacts/api-server`** — Express 5 HTTP API (port 5000), Node.js ESM, esbuild bundle
-  - Routes, middleware, TypeScript strict mode
-  - Source: `src/`, builds to `dist/index.mjs`
-
-- **`artifacts/supabase-user-form`** — React frontend (Vite)
-  - User form UI, calls the API via generated hooks
-  - Source: `src/`, builds to `dist/`
-
-- **`artifacts/mockup-sandbox`** — UI prototyping/design sandbox
-  - Figma imports, component library
-  - Vite + React
-
-- **`lib/db`** — PostgreSQL schema and migrations (Drizzle ORM)
-  - Source: `src/`, schema in `schema.ts`
-  - Drizzle schema is source-of-truth for DB
-
-- **`lib/api-spec`** — OpenAPI spec and codegen
-  - Defines API contracts, regenerates client hooks and Zod schemas
-  - Source: `openapi.yaml`
-  - Generates: `lib/api-zod` (Zod + TS), `lib/api-client-react` (React hooks)
-
-- **`lib/api-zod`** — Generated Zod schemas and TypeScript types
-  - **Do not edit directly** — regenerate from OpenAPI spec via `pnpm --filter @workspace/api-spec run codegen`
-  - Imported by API server for request/response validation
-
-- **`lib/api-client-react`** — Generated React hooks
-  - **Do not edit directly** — regenerate from OpenAPI spec via `pnpm --filter @workspace/api-spec run codegen`
-  - Imported by frontends to call the API
-
-- **`scripts/`** — Utility scripts (build, migrations, setup, etc.)
-  - Node.js, TypeScript
-
-## Env Setup
-
-Required environment variables (`.env` file in repo root):
-
 ```
-DATABASE_URL=postgresql://user:password@localhost:5432/dbname
-# Add others as needed (Supabase, API keys, etc.)
+.
+├── server.mjs                    # Express server + orchestration
+├── vite.config.ts               # Vite configuration
+├── index.html                   # HTML entry point
+├── tsconfig.json                # TypeScript config
+├── package.json                 # All dependencies
+│
+├── artifacts/
+│   ├── api-server/             # Express server source
+│   ├── mockup-sandbox/         # React frontend components
+│   └── supabase-user-form/     # Supabase forms
+│
+└── .env                         # Environment variables
 ```
 
-See `.env` in git status for current values (add to `.gitignore` if it isn't already).
+## Available Scripts
+
+```bash
+# Development - runs both API and frontend with hot reload
+npm run dev
+
+# Frontend only (Vite dev server on port 5173)
+npm run vite:dev
+
+# Build frontend for production
+npm run build
+
+# Run production server
+npm start
+```
+
+## Environment Setup
+
+Create `.env` file in root:
+
+```env
+PORT=5000
+NODE_ENV=development
+```
+
+Optional for Supabase:
+```env
+VITE_SUPABASE_URL=...
+VITE_SUPABASE_ANON_KEY=...
+```
 
 ## Common Tasks
 
 ### Add a new API route
-1. Add endpoint to `artifacts/api-server/src/routes/` (Express handler)
-2. Update OpenAPI spec: `lib/api-spec/openapi.yaml`
-3. Run `pnpm --filter @workspace/api-spec run codegen` to regenerate hooks/schemas
-4. Import generated schemas in your route for validation
+1. Edit: `artifacts/api-server/src/routes/`
+2. Test: `curl http://localhost:5000/api/your-route`
 
-### Update the database schema
-1. Edit Drizzle schema: `lib/db/src/schema.ts`
-2. Run `pnpm --filter @workspace/db run push` to generate migration
-3. Deploy migration to dev/prod (handled by Vercel/deployment platform)
-
-### Type-check everything
-```bash
-pnpm run typecheck
-# Or check only workspace libs:
-pnpm run typecheck:libs
-```
+### Frontend changes
+1. Edit: `artifacts/mockup-sandbox/src/`
+2. Auto-reload on save via Vite
 
 ### Update dependencies
 ```bash
-pnpm add package-name
-# Locked versions in pnpm-lock.yaml
+npm install package-name
 ```
 
-## Key Files
+## Tech Stack
 
-- **`pnpm-workspace.yaml`** — Workspace config, package paths, catalog (dependency versions)
-- **`tsconfig.base.json`** — Shared TypeScript config
-- **`tsconfig.json`** — Root config, extends base
-- **`.npmrc`** — pnpm/npm config (prefer pnpm)
-- **`.replit`** — Replit deployment config
-- **`.env`** — Environment variables (git-ignored, add to `.gitignore` if missing)
+- **Backend**: Express.js 5, Node.js ESM
+- **Frontend**: React 19, Vite
+- **Styling**: Tailwind CSS 4
+- **UI**: Radix UI components
+- **Language**: TypeScript 5.9
+- **Package Manager**: npm (standard, no pnpm needed)
 
-## Build & Deploy
+## Key Features
 
-- API builds to CommonJS bundle via esbuild: `artifacts/api-server/dist/index.mjs`
-- Run on Node.js 24 with `--enable-source-maps` for debugging
-- Frontend builds via Vite
-- Deployable to Vercel, AWS, or any Node.js + static hosting
-
-## Testing & CI
-
-- No test setup yet (add as project grows)
-- Pre-commit hooks: none configured yet
-- CI/CD: handled by Vercel or configured separately
-
-## Known Constraints & Gotchas
-
-- **pnpm only** — repo enforces pnpm in `preinstall` script; npm/yarn will fail
-- **Node ESM only** — API server uses `type: "module"`, `--enable-source-maps` required on start
-- **Drizzle schema is source-of-truth** — don't write SQL directly
-- **OpenAPI spec is source-of-truth** — regenerate client code after spec changes
-- **Use workspace references** — import from lib packages via `@workspace/package-name`
-- **No .gitignore override** — `.cursor/rules/` and `.github/instructions/` are .gitignored
-
-## IDE Setup (VSCode)
-
-Recommended extensions:
-- Prettier (format on save)
-- TypeScript (built-in)
-- ESLint (if added)
-- Drizzle ORM (if using extension)
-
-Recommended settings in `.vscode/settings.json`:
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
-}
-```
+- ✅ Single `npm install` + `npm run dev`
+- ✅ Hot reload for both frontend and API
+- ✅ No monorepo complexity
+- ✅ TypeScript strict mode
+- ✅ Source maps for debugging
+- ✅ Production-ready build
 
 ## Debugging
 
-Enable source maps:
-- API: `node --enable-source-maps ./dist/index.mjs`
-- Check `artifacts/api-server/dist/index.mjs.map` exists after build
+API logs include full request/response info:
+```bash
+npm run dev  # See structured logs from Pino
+```
 
-## Questions?
+Check source maps:
+```bash
+# Built with --enable-source-maps flag
+node --enable-source-maps server.mjs
+```
 
-Refer to:
-- `replit.md` — project overview and stack
-- Individual package `package.json` files for scripts
-- `pnpm-workspace.yaml` for workspace structure
+## Production
+
+```bash
+npm run build    # Builds frontend to dist/public
+PORT=5000 npm start  # Runs in production mode
+```
+
+## Notes
+
+- Old lib packages (lib/db, lib/api-spec) removed for simplicity
+- Add database integration directly to Express server if needed
+- All production-ready configurations included

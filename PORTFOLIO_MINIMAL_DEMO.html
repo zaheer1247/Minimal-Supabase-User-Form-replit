@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Portfolio - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { @apply font-sans antialiased; }
+        .transition-all { transition: all 300ms ease; }
+    </style>
+</head>
+<body class="bg-stone-50 text-slate-900">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-stone-50/95 border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-tight">Zaheer</div>
+            <div class="flex items-center gap-8">
+                <a href="#work" class="text-sm hover:opacity-60 transition">Work</a>
+                <a href="#about" class="text-sm hover:opacity-60 transition">About</a>
+                <a href="#contact" class="text-sm hover:opacity-60 transition">Contact</a>
+                <button id="themeToggle" class="p-2 rounded-lg bg-stone-100 hover:bg-stone-200 transition">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-20 md:py-32 grid md:grid-cols-2 gap-16 items-center">
+        <div>
+            <div class="text-xs tracking-widest mb-8 text-emerald-600">CRAFTING DIGITAL EXPERIENCES</div>
+            <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                <span>Design that</span><br>
+                <span style="color: #dc2626; font-style: italic;">moves people</span><br>
+                <span>forward</span>
+            </h1>
+            <p class="text-lg leading-relaxed mb-8 max-w-md text-slate-600">
+                Full-stack developer building beautiful, functional digital products. Currently exploring the intersection of design and technology.
+            </p>
+            <div class="flex gap-3 mb-12">
+                <div class="w-4 h-4 rounded-full" style="background-color: #ef4444;"></div>
+                <div class="w-4 h-4 rounded-full" style="background-color: #facc15;"></div>
+                <div class="w-4 h-4 rounded-full" style="background-color: #10b981;"></div>
+            </div>
+            <a href="#contact" class="inline-block px-8 py-3 rounded-lg font-medium bg-emerald-600 hover:bg-emerald-700 text-white transition">
+                Let's talk →
+            </a>
+        </div>
+        <div class="rounded-2xl aspect-square bg-stone-200 flex items-center justify-center text-slate-400">
+            <div class="text-center">
+                <div class="text-6xl mb-4">⚡</div>
+                <p class="text-sm">Your portfolio visual here</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Text -->
+    <div class="max-w-7xl mx-auto px-6 py-12 border-t border-stone-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 text-xs tracking-widest text-slate-500">
+        <div>A MINIMAL BEGINNING</div>
+        <div>YOUR PORTFOLIO • YOUR SPACE</div>
+    </div>
+
+    <!-- Work Section -->
+    <section id="work" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-5xl md:text-6xl font-bold mb-6">Work</h2>
+            <p class="text-lg text-slate-600 max-w-2xl mb-20">
+                Selected projects that showcase my approach to solving complex problems with elegant design and clean code.
+            </p>
+
+            <div class="space-y-12">
+                <!-- Project 1 -->
+                <div class="group border-t pt-12">
+                    <div class="grid md:grid-cols-3 gap-8 items-start">
+                        <div class="md:col-span-2">
+                            <div class="text-xs tracking-widest mb-4 text-slate-500">01</div>
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 group-hover:opacity-60 transition">E-Commerce Platform</h3>
+                            <p class="text-lg text-slate-600 mb-6">Full-stack marketplace with real-time inventory and payment processing.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">React</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">Node.js</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">PostgreSQL</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start md:items-end justify-start">
+                            <div class="text-sm text-slate-500 mb-6">2024</div>
+                            <button class="p-3 rounded-lg bg-stone-200 hover:bg-stone-300 transition">→</button>
+                        </div>
+                    </div>
+                    <div class="mt-8 rounded-xl aspect-video bg-stone-200 flex items-center justify-center text-slate-400">
+                        <span class="text-sm">Project screenshot</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group border-t pt-12">
+                    <div class="grid md:grid-cols-3 gap-8 items-start">
+                        <div class="md:col-span-2">
+                            <div class="text-xs tracking-widest mb-4 text-slate-500">02</div>
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 group-hover:opacity-60 transition">Task Management App</h3>
+                            <p class="text-lg text-slate-600 mb-6">Collaborative productivity tool with real-time updates and team management.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">TypeScript</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">Supabase</span>
+                                <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">Tailwind</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start md:items-end justify-start">
+                            <div class="text-sm text-slate-500 mb-6">2024</div>
+                            <button class="p-3 rounded-lg bg-stone-200 hover:bg-stone-300 transition">→</button>
+                        </div>
+                    </div>
+                    <div class="mt-8 rounded-xl aspect-video bg-stone-200 flex items-center justify-center text-slate-400">
+                        <span class="text-sm">Project screenshot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-8">About</h2>
+                <div class="space-y-6 text-lg text-slate-600">
+                    <p>I'm a full-stack developer with a passion for creating meaningful digital experiences. My journey started with a curiosity about how things work, and it's evolved into a career building scalable applications.</p>
+                    <p>I specialize in React, TypeScript, and Node.js, with a strong foundation in database design and API architecture. But beyond the technical skills, I'm deeply committed to understanding user needs.</p>
+                </div>
+                <div class="grid grid-cols-3 gap-8 mt-16">
+                    <div>
+                        <div class="text-3xl font-bold mb-2">50+</div>
+                        <div class="text-sm text-slate-500">Projects</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold mb-2">5+</div>
+                        <div class="text-sm text-slate-500">Years Exp.</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold mb-2">100%</div>
+                        <div class="text-sm text-slate-500">Dedicated</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold mb-12">Skills & Expertise</h3>
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="font-semibold mb-4">Frontend</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">React</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">TypeScript</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">Tailwind</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Backend</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">Node.js</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">Express</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-stone-200 text-slate-700">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 max-w-2xl">
+                <h2 class="text-5xl md:text-6xl font-bold mb-6">Get in touch</h2>
+                <p class="text-lg text-slate-600">Have a project in mind? I'd love to hear from you.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-600">Your Name</label>
+                            <input type="text" placeholder="Zaheer Abbas" class="w-full px-4 py-3 rounded-lg border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-600">Email</label>
+                            <input type="email" placeholder="hello@example.com" class="w-full px-4 py-3 rounded-lg border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-slate-600">Message</label>
+                            <textarea rows="5" placeholder="Tell me about your project..." class="w-full px-4 py-3 rounded-lg border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-8 py-3 rounded-lg font-medium bg-emerald-600 hover:bg-emerald-700 text-white transition">
+                            Send Message →
+                        </button>
+                    </form>
+                </div>
+                <div class="space-y-12">
+                    <div>
+                        <div class="text-xs tracking-widest mb-4 text-slate-500">EMAIL</div>
+                        <a href="mailto:hello@example.com" class="text-2xl font-bold hover:opacity-60 transition">hello@example.com</a>
+                    </div>
+                    <div>
+                        <div class="text-xs tracking-widest mb-4 text-slate-500">PHONE</div>
+                        <a href="tel:+1234567890" class="text-2xl font-bold hover:opacity-60 transition">+1 (234) 567-890</a>
+                    </div>
+                    <div>
+                        <div class="text-xs tracking-widest mb-4 text-slate-500">AVAILABILITY</div>
+                        <p class="text-lg text-slate-700">Available for freelance & full-time roles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-stone-200 bg-stone-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center text-xs text-slate-500">
+                <div>© 2024 Zaheer Abbas. All rights reserved.</div>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-slate-900 transition">Privacy</a>
+                    <a href="#" class="hover:text-slate-900 transition">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const html = document.documentElement;
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        // Check system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            html.style.colorScheme = 'dark';
+            document.body.className = 'bg-slate-950 text-white';
+            themeIcon.textContent = '☀️';
+            applyDarkMode();
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (html.style.colorScheme === 'dark') {
+                html.style.colorScheme = 'light';
+                document.body.className = 'bg-stone-50 text-slate-900';
+                themeIcon.textContent = '🌙';
+                removeDarkMode();
+            } else {
+                html.style.colorScheme = 'dark';
+                document.body.className = 'bg-slate-950 text-white';
+                themeIcon.textContent = '☀️';
+                applyDarkMode();
+            }
+        });
+
+        function applyDarkMode() {
+            document.querySelectorAll('[class*="bg-stone"]').forEach(el => {
+                el.className = el.className.replace('bg-stone-50', 'bg-slate-900').replace('bg-stone-200', 'bg-slate-800').replace('bg-white', 'bg-slate-900');
+            });
+            document.querySelectorAll('[class*="border-stone"]').forEach(el => {
+                el.className = el.className.replace('border-stone-200', 'border-slate-800');
+            });
+            document.querySelectorAll('[class*="text-slate-600"]').forEach(el => {
+                el.className = el.className.replace('text-slate-600', 'text-slate-400');
+            });
+        }
+
+        function removeDarkMode() {
+            document.querySelectorAll('[class*="bg-slate"]').forEach(el => {
+                el.className = el.className.replace('bg-slate-900', 'bg-stone-200').replace('bg-slate-800', 'bg-stone-200').replace('bg-slate-950', 'bg-stone-50');
+            });
+        }
+    </script>
+</body>
+</html>
