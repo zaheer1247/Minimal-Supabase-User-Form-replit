@@ -1,0 +1,16 @@
+{
+  "on_tool_call": {
+    "Bash": [
+      {
+        "if": "command starts with 'pnpm' or 'npm'",
+        "then": "Allow automatically (safe dependency management)"
+      }
+    ],
+    "Edit": [
+      {
+        "if": "editing files in lib/ or artifacts/",
+        "then": "Allow automatically (source files)"
+      }
+    ]
+  }
+}

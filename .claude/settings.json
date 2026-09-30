@@ -1,0 +1,23 @@
+{
+  "description": "Replit Supabase monorepo with Express API, PostgreSQL, and React frontend",
+  "bash": {
+    "allowlist": [
+      "pnpm",
+      "npm",
+      "node",
+      "git",
+      "find",
+      "grep",
+      "ls",
+      "cat",
+      "head",
+      "tail",
+      "tsc",
+      "npx",
+      "drizzle-kit"
+    ]
+  },
+  "typecheck": {
+    "exclude": ["node_modules", "dist", ".git"]
+  }
+}
